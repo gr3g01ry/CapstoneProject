@@ -1,0 +1,27 @@
+<%- include('partials/head')%>
+<%- include('partials/navbar')%>
+    <div class="container py-2">
+        <h1>welcome to the <%= 'Index page'.toUpperCase() %> blog project</h1>
+        <div class="row text-center">
+            <%if(locals.postdata){ %>
+                <% for(let elt of postdata){%>
+                    <div class ="card py-1">
+                        <div class="card-body">
+                            <h1 class="card-header"><a href="post/<%=elt.title%>"><%=elt.title%></a></h1>
+                            <h2 class="card-title"><%=elt.name%> </h2>
+                            <h3 class="card-subtitle mb-2 text-body-secondary"><%=elt.date%></h3>
+                            <p class="card-text text-start text-md-center m-0"><%= elt.content.substr(0,65)%>...</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/post/<%=elt.title%>" class="btn btn-primary">Go on <%=elt.title%></a>
+                            <a href="/category/<%=elt.category%>" class="btn btn-outline-secondary"> Go on <%=elt.category%> category</a>
+                        </div>
+                    </div>
+                    <hr>
+                <%}%>
+            <%}else {%>
+                <h1>Ho no the blog is empty... why???</h1>
+            <%}%>
+        </div>
+    </div>
+<%- include('partials/footer')%>

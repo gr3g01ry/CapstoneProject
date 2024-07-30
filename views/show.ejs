@@ -1,0 +1,24 @@
+<%- include('partials/head')%>
+
+<%- include('partials/navbar')%>
+<div class="container my-5">
+    <div class="row text-center">
+        <p class="lead lh-lg text-warning">welcome to the show page :</p>
+        <h1> <%= thePost.title.toUpperCase() %></h1>
+        <h2 class="text-center"><%= thePost.name%></h2>
+        <p class="my-3"><%=thePost.content%></p>
+        <div class="btn-group justify-content-center" role="group" aria-label="home delete edit">
+            <a href="/">
+                <button type="button" class="btn btn-danger mx-0 px-5">home</button>
+            </a>
+            <a href="/delete/<%=thePost.title%>">
+                <button type="button" class="btn btn-warning mx-0 px-5">delete</button>
+            </a>
+            <a href="/post/<%=thePost.title%>/edit">
+                <button type="button" class="btn btn-success mx-0 px-5">edit</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer')%>

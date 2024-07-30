@@ -1,0 +1,40 @@
+<%- include('partials/head')%>
+
+<%- include('partials/navbar')%>
+<div class="container py-3 edit">
+    <div class="row text-center">
+        <p class="lead lh-lg text-warning">welcome to the edit page :</p>
+        <h1>The Edit Page <%= thePost.title.toUpperCase() %></h1>
+        <form action="/post/edit" method="post" class="container border border-primary-subtle p-3 mb-3 rounded">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="title" name='title' placeholder="title" value="<%= thePost.title%>">
+                <label for="title">Title</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="Subtitle" name="name" placeholder="Subtitle" value="<%= thePost.name%>">
+                <label for="Subtitle">Subtitle</label>
+            </div>
+            <select class="form-select mb-3" aria-label="select category" name="category" required>
+                <option selected>Open this to select a category</option>
+                <option value="family">Family</option>
+                <option value="profesionnal">Profesionnal</option>
+                <option value="hobbies">Hobbies</option>
+            </select>
+            <div class="form-floating mb-3">
+                <textarea class="form-control" id="Text" placeholder="Text here" row="8" maxlength="356" name="content" ><%= thePost.content%></textarea>
+                <label for="Text">Text</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary px-3 "><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+            <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
+            </svg>Post
+            </button>
+            <button type="button" class="btn btn-info text-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
+              </svg><a href="/" class="text-secondary">Return Home</a> </button>
+        </form>
+    </div>
+</div>
+
+
+<%- include('partials/footer')%>
