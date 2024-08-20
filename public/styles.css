@@ -1,16 +1,18 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-body{
+body {
     background-color: pink;
 }
-.container{
+
+.container {
     background-color: white;
     border-radius: 10px;
 }
-h1{
+
+h1 {
     font-family: "Josefin Sans", sans-serif;
     font-optical-sizing: auto;
     font-weight: 700;
@@ -19,7 +21,7 @@ h1{
 }
 
 /*the header*/
-.header .fs-1{
+.header .fs-1 {
     font-family: "Dancing Script", cursive;
     font-optical-sizing: auto;
     font-weight: 600;
@@ -31,20 +33,84 @@ h1{
 .newPost {
     text-align: center;
 }
-.newPost h1{
+
+.newPost h1 {
     font-family: "Josefin Sans", sans-serif;
     font-optical-sizing: auto;
     font-weight: 700;
     font-style: normal;
 }
-.newPost textarea{
+
+.newPost textarea {
     height: 150px !important;
 }
 
 /*the edit*/
-.edit{
+.edit {
     background-color: red;
 }
-.edit textarea{
-    height: 150px!important;
+
+.edit textarea {
+    height: 150px !important;
 }
+
+/*breaking bad api*/
+.brbad{
+    background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='50' height='50' patternTransform='scale(2) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(0,0%,100%,1)'/><path d='M3.45 0l1.97 3.38H1.49L0 6v1.75l2.01-3.5h4.94L4.45 0zM20.2 0L25 8.32 29.8 0h-2.84L25 3.43 23.03 0zm25.35 0l-2.49 4.26H48l2 3.5V6l-1.49-2.62h-3.93L46.55 0zM25.04 19.02l-1.48 2.62h-3.9L21.64 25l-1.96 3.36h3.89l1.48 2.62 1.49-2.62h3.89L28.45 25l1.97-3.36h-3.9zM0 42.25V44l1.49 2.62h3.93L3.45 50h1l2.5-4.3H2zm50 0l-2.01 3.45h-4.94l2.5 4.3h1l-1.97-3.38h3.93L50 44zm-33 2.23L20.2 50h2.83l-1.96-3.43h7.86L26.96 50h2.84l3.2-5.52z'  stroke-width='1' stroke='none' fill='hsla(258.5,59.4%,59.4%,1)'/><path d='M4.46 0l2.49 4.26H2l-2 3.5V9.5l2.54-4.37h5.9L5.5 0zm18.57 0L25 3.43 26.96 0zM44.5 0l-2.93 5.13h5.9L50 9.5V7.75l-2.01-3.5h-4.94L45.55 0zM31.13 8.69l-5.87 3.5 5.94 3.35zm-12.35.07l.03 6.86 5.93-3.47zm19.64 4.11l-5.9 3.43 5.9 3.38zm-26.81.05l-.05 6.81 5.97-3.35zm34.05 4.04l-5.93 3.46 5.96 3.4zm-41.28.12l-.02 6.86 5.91-3.38zm41.25 8.97l-5.9 3.4 5.9 3.41zM4.3 26.2l.05 6.86 5.92-3.48zm34.11 4l-5.94 3.45 5.95 3.42zm-26.83.1v6.85l5.9-3.45zm19.61 4.1l-5.93 3.41 5.96 3.44zm-12.36.05l.02 6.85 5.89-3.46zM0 40.46v1.79l2.01 3.45h4.94L4.45 50h1.06l2.93-5.17h-5.9zm50 0l-2.54 4.37h-5.9L44.5 50h1.05l-2.49-4.3H48l2-3.45zm-28.93 6.11L23.03 50h3.93l1.97-3.43H25z'  stroke-width='1' stroke='none' fill='hsla(339.6,82.2%,51.6%,1)'/><path d='M0 0v6l1.49-2.62h3.93L3.45 0zm46.55 0l-1.97 3.38h3.93L50 6V0zM25 13.2L4.54 25 25 36.8 45.46 25zm.04 2.28l2.54 4.37h5.94L30.55 25l2.97 5.15h-5.94l-2.54 4.37-2.53-4.37h-5.95L19.54 25l-2.98-5.15h5.95zM0 44v6h3.45l1.97-3.38H1.49zm50 0l-1.49 2.62h-3.93L46.55 50H50z'  stroke-width='1' stroke='none' fill='hsla(258.5,59.4%,59.4%,1)'/></pattern></defs><rect width='800%' height='800%' transform='translate(-100,0)' fill='url(%23a)'/></svg>");
+    min-height: 50vh ;
+}
+.brbad figure {
+    background: #d6d6d6;
+    padding: 25px 60px;
+    border-radius: 10px;
+}
+
+.brbad blockquote {
+    position: relative;
+    margin: 0 0 20px;
+}
+
+.brbad blockquote p {
+    margin: 0;
+    font-size: 1.5rem;
+    font-style: italic;
+}
+
+.brbad blockquote:before {
+    position: absolute;
+    top: 0;
+    left: -45px;
+    content: "\9749";
+    font-family: 'Fontawesome, sans-serif';
+    font-size: 40px;
+    color: #999;
+}
+
+.brbad figcaption {
+    position: relative;
+    text-align: right;
+}
+
+.brbad figcaption:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #141414;
+}
+
+.brbad figcaption span {
+    display: inline-block;
+    position: relative;
+    margin-right: 40px;
+    border: 2px solid black;
+    padding: 0 8px;
+    background: #d6d6d6;
+    color: black;
+    font-family: cursive, sans-serif;
+    z-index: 1;
+}
+

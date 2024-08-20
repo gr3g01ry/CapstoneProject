@@ -1,0 +1,58 @@
+<%- include('../../partials/head')%>
+<%- include('../../partials/navbar')%>
+    <div class="container py-2 formbrbad">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <h1 class="h1 text-center">Severeals best breaking bad quotes</h1>
+                <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
+                    <div class="col-lg-10 px-0 mx-auto">
+                      <h1 class="display-6 fst-italic">A simply API to get inspired</h1>
+                      <h6 class ="h6 text-center">API no key </h6>
+                      <p class="lead my-3">
+                        A api based on "breakingbadquotes.xyz". An api to get random quotes from the best show runner, yousekf you know. </p>
+                      <p class="lead">
+                        This exercice is done with <a href="http://https://www.udemy.com/course/the-complete-web-development-bootcamp/learn/lecture/38892394#overview" target="_blank">Lucy Angela teacher on udemy, lecon=> api capstone project.</a>  
+                      </p>
+                    </div>
+                </div>
+                <form action="/api/breakingbad" method="post">
+                    <div class="form-group row p-3">
+                        <label for="number" class="col-sm-4 col-form-label text-bg-primary ">how many quotes?</label>
+                        <div class="col-sm-8 ">
+                            <input type="number" class="form-control" id="number" name="number" value="1" min="1" max="5" required>
+                          </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 mx-auto">
+                            <% if(locals.data) {%>
+                                <input class="btn btn-primary btn-lg" type="submit" value="get more inspiration">
+                            <%} else {%>
+                            <input class="btn btn-primary btn-lg" type="submit" value="get quotes">
+                            <% } %>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <% if(locals.data){%>
+        <div class="container brbad my-2 ">
+            <div class="row my-auto">
+                <% data.forEach(element => {%>
+                    <figure class="col-md-6 offset-md-3 my-2 bg-secondary text-white ">
+                        <blockquote>
+                            <p>
+                                <%= element.quote %>
+                            </p>
+                        </blockquote>
+                        <figcaption>
+                            <span >
+                                <%= element.author %>
+                            </span>
+                        </figcaption>
+                    </figure>
+               <%  }); %>
+            </div>
+        </div>
+    <% } %>
+<%- include('../../partials/footer')%>

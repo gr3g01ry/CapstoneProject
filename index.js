@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const path=require('path');
+const axios=require("axios");
 const port=3000;
 
 
@@ -103,6 +104,102 @@ app.get('/category/:catego',(req,res)=>{
 //About
 app.get('/about',(req,res)=>{
     res.render('about.ejs');
+})
+
+/*API ROAD */
+/* breaking bad quotes */
+app.get("/api/breakingbad", (req, res) => {
+    res.render("Api/breakingbad/brbad.ejs");
+  });
+
+app.post('/api/breakingbad',async (req ,res)=>{
+    console.log(req.body)
+    let {number}=req.body;
+    console.log(number,"+++++++++");
+    try {
+        const result = await axios.get(`https://api.breakingbadquotes.xyz/v1/quotes/${number}`);
+        console.log(result)
+        let {data}=result;
+        res.render('Api/breakingbad/brbad.ejs',{data});
+    } catch (error) {
+        console.log(error);
+        res.redirect('/')
+    }
+})
+
+/*Open weather map */
+app.get("/api/openweathermap", (req, res) => {
+    res.render("Api/openweathermap/openweathermap.ejs");
+  });
+
+app.post('/api/openweathermap',async (req,res)=>{
+    //1detect the country switch many language
+        //we use restcountries API
+        console.log(req);
+    let {ville,codepostal,pays}=req.body;
+    console.log(pays)
+    try {
+        let resultCountry=await axios.get(`https://restcountries.com/v3.1/translation/${pays}`);
+        // console.log(resultCountry.data);
+        console.log("++++++++++++++++++++");
+        if(resultCountry.data.status==404){
+            console.log('------------------')
+            res.redirect('/');
+        }else{
+            let isoCode;
+            let paysInLow=pays.trim().toLowerCase()
+            if(resultCountry.data.length>0){
+                resultCountry.data.find(country =>{
+                    const commonName = country.name.common.toLowerCase();
+                    if (commonName === paysInLow) {
+                       isoCode= country.cca2;
+                    }
+                       // Comparer avec les traductions (en minuscules)
+                    if (country.translations) {
+                        for (let translation of Object.values(country.translations)) {
+                            if (translation.common && translation.common.toLowerCase() === paysInLow) {
+                                isoCode= country.cca2;;
+                            }
+                        }
+                    }
+            });
+                if (isoCode) {
+                    // isoCode= countrySearch.cca2;  // 'cca2' est le code ISO 3166-1 alpha-2
+                    console.log(isoCode+"++++++++++++++++++++++++++++");
+                    if(req.body.codepostal){
+                        let weather= await axios.get(`https://api.openweathermap.org/data/2.5/weather?zip=${codepostal},${isoCode}&lang=fr&units=metric&appid=21be37ca56279dd2b50ee0046841d733`)
+                        .then((response)=>{
+                            console.log(response.data);
+                            // console.log("++++++++++");
+                            let {data}=response;
+                            res.render('Api/openweathermap/openweathermap.ejs',{data});
+                        })
+                        .catch(function(error){
+                            console.log(error)
+                        })
+                    }
+                    else{
+                        let weather= await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${ville},{isoCode}&lang=fr&units=metric&appid=21be37ca56279dd2b50ee0046841d733`)
+                        .then((response)=>{
+                            console.log(response.data);
+                            let {data}=response;
+                            res.render('Api/openweathermap/openweathermap.ejs',{data});
+                        })
+                        .catch(function(error){
+                            console.log(error)
+                        })
+                    }
+                } else {
+                    throw new Error("no isocode");
+                }
+            } else {
+                throw new Error("Country not found.");
+            }
+        }
+    } catch (error) {
+        console.log(error)
+        res.redirect('/');
+    }
 })
 
 
