@@ -3,7 +3,15 @@ const app = express();
 const path=require('path');
 const axios=require("axios");
 const port=3000;
+const rateLimit =require('express-rate-limit');
 
+const limiter = rateLimit({
+	windowMs: 15 * 60 * 1000, // 15 minutes
+	limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+	standardHeaders: 'draft-7', // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
+	legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
+	// store: ... , // Redis, Memcached, etc. See below.
+})
 
 /*EJS PARAMS*/
 //we setting view engine property from express with ejs
@@ -16,6 +24,7 @@ app.set('views',path.join(__dirname,'/views'))
 app.use(express.static(path.join(__dirname, 'public')))
 //to parse data receipt 
 app.use(express.urlencoded({extended: true}));
+app.use(limiter);
 
 //the seeds
 let postData=[
